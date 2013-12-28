@@ -1114,9 +1114,7 @@ bool CCurses :: Update( )
 				string War3EXE;
 
 				if( !m_GProxy->m_CDKeyTFT.empty( ) )
-					War3EXE = m_GProxy->m_War3Path + "Frozen Throne.exe";
-				else
-					War3EXE = m_GProxy->m_War3Path + "Warcraft III.exe";
+					War3EXE = m_GProxy->m_War3Path + "War3.exe";
 
 				BOOL hProcess = CreateProcessA( War3EXE.c_str( ), NULL, NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, m_GProxy->m_War3Path.c_str( ), LPSTARTUPINFOA( &si ), &pi );
 
