@@ -1107,12 +1107,10 @@ bool CCurses :: Update( )
 			}
             else if( Command.size() >= 8 && Command.substr(0, 8) == "/find_f ")
             {
-                vector<pair<string, int>> ::iterator i = m_RealmData.Friends.begin();
+                vector<pair<string, int>> f_pair = m_GProxy->m_BNET->GetFriends();
+                vector<pair<string, int>> ::iterator i = f_pair.begin();
                 string name = m_InputBuffer.substr(8);
-                while ((*i).first != name) {
-                    i++;
-                }
-                i++;
+                for (i; (*i).first == name; i++ );
                 string GameName = (*i).first;
                 m_GProxy->m_BNET->SetSearchGameName( GameName );
                 CONSOLE_Print( "[BNET] looking for a friend game named \"" + GameName + "\" for 2 mins" );
