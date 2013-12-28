@@ -440,7 +440,7 @@ int main( int argc, char **argv )
 
 CGProxy :: CGProxy( bool nTFT, string nWar3Path, string nCDKeyROC, string nCDKeyTFT, string nServer, string nUsername, string nPassword, string nChannel, uint32_t nWar3Version, uint16_t nPort, BYTEARRAY nEXEVersion, BYTEARRAY nEXEVersionHash, string nPasswordHashType )
 {
-	m_Version = "Public Test Release 1.0 (March 11, 2010) {CursesMod 1.15}";
+    m_Version = "Public Test Release 1.0 (March 11, 2010) {CursesMod 1.15} {mdk custombuild}";
 	m_LocalServer = new CTCPServer( );
 	m_LocalSocket = NULL;
 	m_RemoteSocket = new CTCPClient( );

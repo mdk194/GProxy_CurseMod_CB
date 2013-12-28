@@ -266,7 +266,7 @@ bool CBNET :: Update( void *fd, void *send_fd )
 			m_LastGetPublicListTime = GetTime( );
 		}
 
-		// request the search game every 15 seconds
+		// request the search game every 10 seconds
 
 		if( !m_SearchGameName.empty( ) && GetTime( ) - m_SearchGameNameTime >= 120 )
 		{
@@ -275,7 +275,7 @@ bool CBNET :: Update( void *fd, void *send_fd )
 			m_SearchGameNameTime = GetTime( );
 		}
 
-		if( !m_GProxy->m_LocalSocket && !m_SearchGameName.empty( ) && GetTime( ) - m_LastGetSearchGameTime >= 15 && m_OutPackets.size( ) <= 2 )
+		if( !m_GProxy->m_LocalSocket && !m_SearchGameName.empty( ) && GetTime( ) - m_LastGetSearchGameTime >= 10 && m_OutPackets.size( ) <= 2 )
 		{
 			QueueGetGameList( m_SearchGameName );
 			m_LastGetSearchGameTime = GetTime( );
