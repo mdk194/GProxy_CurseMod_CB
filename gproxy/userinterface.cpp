@@ -302,9 +302,10 @@ void CCurses :: SetGProxy( CGProxy* nGProxy )
 	Print( "   /exit or /quit           : Close GProxy++", true );
 	Print( "   /filter <f>              : Start filtering public game names for <f>", true );
 	Print( "   /filteroff               : Stop filtering public game names", true );
-	Print( "   /help                    : Show help text", true );
 	Print( "   /public                  : Enable listing of public games", true );
 	Print( "   /publicoff               : Disable listing of public games", true );
+    Print( "   /find_f <name>           : Find friend current game", true);
+    Print( "   /help                    : Show help text", true );
 #ifdef WIN32
 	Print( "   /start                   : Start warcraft 3", true );
 #endif
@@ -1053,6 +1054,7 @@ bool CCurses :: Update( )
 				Print( "   /filteroff               : Stop filtering public game names", true );
 				Print( "   /public                  : Enable listing of public games", true );
 				Print( "   /publicoff               : Disable listing of public games", true );
+                Print( "   /find_f <name>           : Find friend current game", true);
 #ifdef WIN32
 				Print( "   /start                   : Start warcraft 3", true );
 #endif
@@ -1103,6 +1105,18 @@ bool CCurses :: Update( )
 				m_GProxy->m_BNET->SetListPublicGames( false );
 				CONSOLE_Print( "[BNET] listing of public games disabled" );
 			}
+            else if( Command.size() >= 8 && Command.substr(0, 8) == "/find_f ")
+            {
+                vector<pair<string, int>> ::iterator i = m_RealmData.Friends.begin();
+                string name = m_InputBuffer.substr(8);
+                while ((*i).first != name) {
+                    i++;
+                }
+                i++;
+                string GameName = (*i).first;
+                m_GProxy->m_BNET->SetSearchGameName( GameName );
+                CONSOLE_Print( "[BNET] looking for a friend game named \"" + GameName + "\" for 2 mins" );
+            }
 #ifdef WIN32
 			else if( Command == "/start" )
 			{
