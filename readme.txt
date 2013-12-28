@@ -1,3 +1,12 @@
+
+==========================================
+GProxy++ 1.0 CurseMod 1.15 mdk CustomBuild
+==========================================
+
+add /find_f command
+fix bugs with ENT bot
+reduce request search time
+
 =================================================
 GProxy++ Public Test Release 1.0 (March 11, 2010)
 =================================================
@@ -74,6 +83,7 @@ In the GProxy++ console:
 /game <gamename>	look for a specific game named <gamename>
 /public			enable listing of public games (also: /publicon, /public on, /list, /liston, /list on)
 /publicoff		disable listing of public games (also: /public off, /listoff, /list off)
+/find_f <name>		find friend's current game
 /r <message>		reply to the last received whisper
 /start			start Warcraft III
 /version		show version text
