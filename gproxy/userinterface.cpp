@@ -587,7 +587,7 @@ void CCurses :: DrawListWindow2( WindowType wType, BufferType bType )
 				wmove( data.Window, y, 32 );
 				refresh( );
 
-				for( uint32_t j = 0; j < message.size( ) && j < 20; j++ )
+				for( uint32_t j = 0; j < message.size( ) && j < 32; j++ )
 					waddch( data.Window, UTIL_ToULong( message[j] ) );
 
 				SetAttribute( data, message, flag, bType, false );
@@ -635,7 +635,7 @@ void CCurses :: DrawListWindow3( WindowType wType, BufferType bType )
 				wmove( data.Window, y, 32 );
 				refresh( );
 
-				for( uint32_t j = 0; j < message.size( ) && j < 20; j++ )
+				for( uint32_t j = 0; j < message.size( ) && j < 32; j++ )
 					waddch( data.Window, UTIL_ToULong( message[j] ) );
 
 				i++;
