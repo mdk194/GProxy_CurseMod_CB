@@ -876,9 +876,9 @@ bool CGProxy :: Update( long usecBlock )
 		{
 			for( vector<CIncomingGameHost *> :: iterator i = m_Games.begin( ); i != m_Games.end( ); )
 			{
-				// expire games older than 60 seconds
+				// expire games older than 2 mins
 
-				if( GetTime( ) - (*i)->GetReceivedTime( ) >= 60 )
+				if( GetTime( ) - (*i)->GetReceivedTime( ) >= 120 )
 				{
 					// don't forget to remove it from the LAN list first
 
