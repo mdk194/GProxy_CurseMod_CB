@@ -1105,9 +1105,9 @@ bool CCurses :: Update( )
 				m_GProxy->m_BNET->SetListPublicGames( false );
 				CONSOLE_Print( "[BNET] listing of public games disabled" );
 			}
-            else if( Command.size() >= 3 && Command.substr(0, 3) == "/ff ")
+            else if( Command.size() >= 4 && Command.substr(0, 4) == "/ff ")
             {
-                string name = m_InputBuffer.substr(3);
+                string name = m_InputBuffer.substr(4);
                 string GameName = m_GProxy->m_BNET->Friend_Loc(name);
                 m_GProxy->m_BNET->SetSearchGameName( GameName );
                 CONSOLE_Print( "[BNET] looking for " + name + "'s game \"" + GameName + "\" for 2 mins" );
