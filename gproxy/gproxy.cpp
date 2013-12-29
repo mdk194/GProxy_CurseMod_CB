@@ -35,6 +35,7 @@
 #ifdef WIN32
  #include <windows.h>
  #include <winsock.h>
+ #include <mmsystem.h>
 #endif
 
 #include <time.h>
@@ -1275,7 +1276,10 @@ void CGProxy :: ProcessRemotePackets( )
 			else if( Packet->GetID( ) == CGameProtocol :: W3GS_COUNTDOWN_END )
 			{
 				if( m_GameIsReliable && m_ReconnectPort > 0 )
-					CONSOLE_Print( "[GPROXY] game started, disconnect protection enabled" );
+                {
+                    CONSOLE_Print( "[GPROXY] game started, disconnect protection enabled" );
+                    sndPlaySound(L"started.wav", SND_ASYNC | SND_FILENAME);
+                }
 				else
 				{
 					if( m_GameIsReliable )
