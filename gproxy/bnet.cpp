@@ -896,3 +896,17 @@ void CBNET :: QueueJoinGame( string gameName )
 		m_InGame = true;
 	}
 }
+
+string CBNET::Friend_Loc( string name )
+{
+    vector<pair<string, string>>fr;
+
+    for( vector<CIncomingFriendList *> :: iterator i = m_Friends.begin( ); i != m_Friends.end( ); i++ )
+        fr.push_back( pair<string, string>((*i)->GetAccount(), (*i)->GetLocation()) );
+    
+    for (vector<pair<string, string>>::iterator it = fr.begin(); it != fr.end(); it++) 
+    {
+        if( (*it).first == name)
+            return (*it).second;
+    }
+}

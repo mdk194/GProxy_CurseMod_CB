@@ -114,6 +114,7 @@ public:
 	void SetSearchGameName( string nSearchGameName )		{ m_SearchGameName = nSearchGameName; m_SearchGameNameTime = GetTime( ); }
 	vector<pair<string, int> > GetFriends( );
 	vector<pair<string, int> > GetClan( );
+    string Friend_Loc(string name);
 
 	// processing functions
 

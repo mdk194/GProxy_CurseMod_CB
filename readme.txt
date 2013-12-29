@@ -3,9 +3,10 @@
 GProxy++ 1.0 CurseMod 1.15 mdk CustomBuild
 ==========================================
 
-add /find_f command
+add /ff <friend_name> command: find current game of your friend.
 fix bugs with ENT bot
 reduce request search time
+play started.wav sound when game started
 
 =================================================
 GProxy++ Public Test Release 1.0 (March 11, 2010)

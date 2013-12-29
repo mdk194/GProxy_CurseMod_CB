@@ -304,7 +304,7 @@ void CCurses :: SetGProxy( CGProxy* nGProxy )
 	Print( "   /filteroff               : Stop filtering public game names", true );
 	Print( "   /public                  : Enable listing of public games", true );
 	Print( "   /publicoff               : Disable listing of public games", true );
-    Print( "   /find_f <name>           : Find friend current game", true);
+    Print( "   /ff <friend_name>        : Find friend's current game", true);
     Print( "   /help                    : Show help text", true );
 #ifdef WIN32
 	Print( "   /start                   : Start warcraft 3", true );
@@ -1054,7 +1054,7 @@ bool CCurses :: Update( )
 				Print( "   /filteroff               : Stop filtering public game names", true );
 				Print( "   /public                  : Enable listing of public games", true );
 				Print( "   /publicoff               : Disable listing of public games", true );
-                Print( "   /find_f <name>           : Find friend current game", true);
+                Print( "   /ff <name>               : Find friend's current game", true);
 #ifdef WIN32
 				Print( "   /start                   : Start warcraft 3", true );
 #endif
@@ -1105,15 +1105,12 @@ bool CCurses :: Update( )
 				m_GProxy->m_BNET->SetListPublicGames( false );
 				CONSOLE_Print( "[BNET] listing of public games disabled" );
 			}
-            else if( Command.size() >= 8 && Command.substr(0, 8) == "/find_f ")
+            else if( Command.size() >= 3 && Command.substr(0, 3) == "/ff ")
             {
-                vector<pair<string, int>> f_pair = m_GProxy->m_BNET->GetFriends();
-                vector<pair<string, int>> ::iterator i = f_pair.begin();
-                string name = m_InputBuffer.substr(8);
-                for (i; (*i).first == name; i++ );
-                string GameName = (*i).first;
+                string name = m_InputBuffer.substr(3);
+                string GameName = m_GProxy->m_BNET->Friend_Loc(name);
                 m_GProxy->m_BNET->SetSearchGameName( GameName );
-                CONSOLE_Print( "[BNET] looking for a friend game named \"" + GameName + "\" for 2 mins" );
+                CONSOLE_Print( "[BNET] looking for " + name + "'s game \"" + GameName + "\" for 2 mins" );
             }
 #ifdef WIN32
 			else if( Command == "/start" )
