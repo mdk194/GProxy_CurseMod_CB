@@ -305,6 +305,7 @@ void CCurses :: SetGProxy( CGProxy* nGProxy )
 	Print( "   /public                  : Enable listing of public games", true );
 	Print( "   /publicoff               : Disable listing of public games", true );
     Print( "   /ff <friend_name>        : Find friend's current game", true);
+    Print( "   /ff                      : Find all friend games", true);
     Print( "   /help                    : Show help text", true );
 #ifdef WIN32
 	Print( "   /start                   : Start warcraft 3", true );
@@ -1055,6 +1056,7 @@ bool CCurses :: Update( )
 				Print( "   /public                  : Enable listing of public games", true );
 				Print( "   /publicoff               : Disable listing of public games", true );
                 Print( "   /ff <name>               : Find friend's current game", true);
+                Print( "   /ff                      : Find all friend games", true);
 #ifdef WIN32
 				Print( "   /start                   : Start warcraft 3", true );
 #endif
@@ -1105,6 +1107,15 @@ bool CCurses :: Update( )
 				m_GProxy->m_BNET->SetListPublicGames( false );
 				CONSOLE_Print( "[BNET] listing of public games disabled" );
 			}
+            else if( Command == "/ff")
+            {
+                vector<string> GList = m_GProxy->m_BNET->AllFriendLocs();
+                for(vector<string>::iterator i = GList.begin(); i != GList.end( ); i++ )
+                {
+                    m_GProxy->m_BNET->SetSearchGameName( *i );
+                    CONSOLE_Print( "[BNET] looking for game \"" + *i + "\" for 2 mins" );
+                }
+            }
             else if( Command.size() >= 4 && Command.substr(0, 4) == "/ff ")
             {
                 string name = m_InputBuffer.substr(4);
