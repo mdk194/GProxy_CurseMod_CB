@@ -266,8 +266,6 @@ bool CBNET :: Update( void *fd, void *send_fd )
 			m_LastGetPublicListTime = GetTime( );
 		}
 
-		// request the search game every 10 seconds
-
 		if( !m_SearchGameName.empty( ) && GetTime( ) - m_SearchGameNameTime >= 120 )
 		{
 			CONSOLE_Print( "[BNET] stopped searching for game \"" + m_SearchGameName + "\"" );
@@ -275,7 +273,8 @@ bool CBNET :: Update( void *fd, void *send_fd )
 			m_SearchGameNameTime = GetTime( );
 		}
 
-		if( !m_GProxy->m_LocalSocket && !m_SearchGameName.empty( ) && GetTime( ) - m_LastGetSearchGameTime >= 10 && m_OutPackets.size( ) <= 2 )
+        // request the search game every 15 seconds
+		if( !m_GProxy->m_LocalSocket && !m_SearchGameName.empty( ) && GetTime( ) - m_LastGetSearchGameTime >= 15 && m_OutPackets.size( ) <= 2 )
 		{
 			QueueGetGameList( m_SearchGameName );
 			m_LastGetSearchGameTime = GetTime( );
@@ -773,12 +772,8 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 		CONSOLE_ChangeChannel( Message );
 		CONSOLE_RemoveChannelUsers( );
 		CONSOLE_AddChannelUser( m_UserName, UserFlags );
-        vector<string> GList = m_GProxy->m_BNET->AllFriendLocs();
-        for(vector<string>::iterator i = GList.begin(); i != GList.end( ); i++ )
-        {
-            m_GProxy->m_BNET->SetSearchGameName( *i );
-            CONSOLE_Print( "[BNET] auto looking for friend's game \"" + *i + "\" for 2 mins" );
-        }
+
+        m_GProxy->m_BNET->FindFriendsGame();
 	}
 	else if( Event == CBNETProtocol :: EID_CHANNELFULL )
 		CONSOLE_Print( "[BNET] channel is full", false  );
@@ -905,6 +900,7 @@ void CBNET :: QueueJoinGame( string gameName )
 
 string CBNET::Friend_Loc( string name )
 {
+    m_GProxy->m_BNET->SendGetFriendsList(); //update friend list first
     for( vector<CIncomingFriendList *> :: iterator i = m_Friends.begin( ); i != m_Friends.end( ); i++ )
         if ((*i)->GetAccount() == name)
             return (*i)->GetLocation();
@@ -916,4 +912,15 @@ vector<string> CBNET::AllFriendLocs()
     for( vector<CIncomingFriendList *> :: iterator i = m_Friends.begin( ); i != m_Friends.end( ); i++ )
         result.push_back((*i)->GetLocation());
     return result;
+}
+
+void CBNET::FindFriendsGame()
+{
+    m_GProxy->m_BNET->SendGetFriendsList(); //update friend list first
+    vector<string> GList = m_GProxy->m_BNET->AllFriendLocs();
+    for(vector<string>::iterator i = GList.begin(); i != GList.end( ); i++ )
+    {
+        m_GProxy->m_BNET->SetSearchGameName( *i );
+        CONSOLE_Print( "[BNET] looking for game \"" + *i + "\" for 2 mins" );
+    }
 }

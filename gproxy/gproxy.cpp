@@ -389,7 +389,7 @@ int main( int argc, char **argv )
 	}
 
 	if ( CFG.GetInt( "curses_enabled", 1 ) == 1 )
-		gCurses = new CCurses( CFG.GetInt( "term_width", 135 ), CFG.GetInt( "term_height", 52 ), !!CFG.GetInt( "curses_splitview", 1 ), CFG.GetInt( "curses_listtype", 1 ) );
+		gCurses = new CCurses( CFG.GetInt( "term_width", 135 ), CFG.GetInt( "term_height", 48 ), !!CFG.GetInt( "curses_splitview", 1 ), CFG.GetInt( "curses_listtype", 1 ) );
 
 	CONSOLE_Print( "" );
 	CONSOLE_Print( "  Welcome to GProxy++." );
@@ -877,9 +877,9 @@ bool CGProxy :: Update( long usecBlock )
 		{
 			for( vector<CIncomingGameHost *> :: iterator i = m_Games.begin( ); i != m_Games.end( ); )
 			{
-				// expire games older than 2 mins
+				// expire games older than 1 min
 
-				if( GetTime( ) - (*i)->GetReceivedTime( ) >= 120 )
+				if( GetTime( ) - (*i)->GetReceivedTime( ) >= 60 )
 				{
 					// don't forget to remove it from the LAN list first
 

@@ -1109,16 +1109,12 @@ bool CCurses :: Update( )
 			}
             else if( Command == "/ff")
             {
-                vector<string> GList = m_GProxy->m_BNET->AllFriendLocs();
-                for(vector<string>::iterator i = GList.begin(); i != GList.end( ); i++ )
-                {
-                    m_GProxy->m_BNET->SetSearchGameName( *i );
-                    CONSOLE_Print( "[BNET] looking for game \"" + *i + "\" for 2 mins" );
-                }
+                m_GProxy->m_BNET->FindFriendsGame();
             }
             else if( Command.size() >= 4 && Command.substr(0, 4) == "/ff ")
             {
                 string name = m_InputBuffer.substr(4);
+                m_GProxy->m_BNET->SendGetFriendsList(); //update friend list first
                 string GameName = m_GProxy->m_BNET->Friend_Loc(name);
                 m_GProxy->m_BNET->SetSearchGameName( GameName );
                 CONSOLE_Print( "[BNET] looking for " + name + "'s game \"" + GameName + "\" for 2 mins" );

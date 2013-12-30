@@ -116,6 +116,7 @@ public:
 	vector<pair<string, int> > GetClan( );
     string Friend_Loc(string name);
     vector<string> AllFriendLocs();
+    void FindFriendsGame();
 	// processing functions
 
 	unsigned int SetFD( void *fd, void *send_fd, int *nfds );
