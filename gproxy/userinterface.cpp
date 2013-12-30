@@ -19,7 +19,7 @@ int ceili( float f )
 CCurses :: CCurses( int nTermWidth, int nTermHeight, bool nSplitView, int nListType )
 {
 #ifdef __PDCURSES__
-	PDC_set_title("GProxy++ CursesMod");
+	PDC_set_title("GProxy++ CursesMod mdk194");
 #endif
 
 	// Initialize vectors
@@ -44,7 +44,7 @@ CCurses :: CCurses( int nTermWidth, int nTermHeight, bool nSplitView, int nListT
 	m_ListType = nListType;
 	m_InitialUpdate = true;
 	exY = 0; exX = 0;
-	
+
 	// Initialize curses and windows
 	initscr( );
 	clear( );
@@ -85,7 +85,7 @@ CCurses :: CCurses( int nTermWidth, int nTermHeight, bool nSplitView, int nListT
 	wbkgdset( m_WindowData[W_TAB].Window, ' ' | COLOR_PAIR(6)  );
 	wattr_set( m_WindowData[W_INPUT].Window, A_NORMAL, 6, 0 );
 	wattr_set( m_WindowData[W_TAB].Window, A_NORMAL, 6, 0 );
-	
+
 	// Change terminal size
 	Resize( nTermHeight, nTermWidth );
 
@@ -95,7 +95,7 @@ CCurses :: CCurses( int nTermWidth, int nTermHeight, bool nSplitView, int nListT
 	AddTab( "FRIENDS", T_LIST, 0, B_FRIENDS, W_TAB );
 	AddTab( "CLAN", T_LIST, 0, B_CLAN, W_TAB );
 	SelectTab( 0 );
-	
+
 	// Initialize Input-buffer
 	m_Buffers[B_INPUT]->push_back( pair<string, int>("", 0) );
 
@@ -250,9 +250,9 @@ void CCurses :: CompileGames( )
 	m_Buffers[B_GAMES]->clear();
 
 	int reliable = 0;
-	
+
 	for( uint32_t i = 0; i < m_GProxy->m_Games.size(); ++i )
-	{	
+	{
 		reliable = m_GProxy->m_Games[i]->GetMapWidth( ) == 1984 && m_GProxy->m_Games[i]->GetMapHeight( ) == 1984 ? 1 : 0;
 		m_Buffers[B_GAMES]->push_back( pair<string, int>( m_GProxy->m_Games[i]->GetGameName( ), reliable ) );
 		m_Buffers[B_GAMES]->push_back( pair<string, int>( m_GProxy->m_Games[i]->GetHostName( ), reliable ) );
@@ -331,7 +331,7 @@ void CCurses :: SetAttribute( SWindowData &data, string message, int flag, Buffe
 	attr_t attribute = A_WHITE;
 
 	transform( message.begin(), message.end(), message.begin(), ::tolower );
-	
+
 	// determine color using buffer type, message and flag
 	switch( type )
 	{
@@ -503,7 +503,7 @@ void CCurses :: DrawWindow( WindowType wType, BufferType bType )
 		{
 			string message = (*i).first;
 			int &flag = (*i).second;
-			
+
 			message = UTIL_UTF8ToLatin1( message );
 
 			SetAttribute( data, message, flag, bType, true );
@@ -537,7 +537,7 @@ void CCurses :: DrawListWindow( WindowType wType, BufferType bType )
 		{
 			string message = (*i).first;
 			int &flag = (*i).second;
-			
+
 			message = UTIL_UTF8ToLatin1( message );
 
 			SetAttribute( data, message, flag, bType, true );
@@ -568,7 +568,7 @@ void CCurses :: DrawListWindow2( WindowType wType, BufferType bType )
 		{
 			string message = (*i).first;
 			int &flag = (*i).second;
-			
+
 			message = UTIL_UTF8ToLatin1( message );
 
 			if( y++ < LINES - 5 )
@@ -616,7 +616,7 @@ void CCurses :: DrawListWindow3( WindowType wType, BufferType bType )
 		{
 			string message = (*i).first;
 			int &flag = (*i).second;
-			
+
 			message = UTIL_UTF8ToLatin1( message );
 
 			if( y++ < LINES - 5 )
@@ -689,7 +689,7 @@ void CCurses :: Resize( int y, int x )
 	if( y > 5 && x > 5 )
 	{
 		resize_term( y, x );
-		
+
 		Resize( );
 	}
 }
@@ -784,7 +784,7 @@ void CCurses :: UpdateMouse( int c )
 				}
 			}
 		}
-		
+
 		if ( m_TabData[m_SelectedTab].type != T_LIST )
 		{
 			if( Mouse_status.changes == MOUSE_WHEEL_UP )
@@ -912,7 +912,7 @@ bool CCurses :: Update( )
 		m_Buffers[B_CHANNEL] = &m_RealmData.ChannelUsers;
 		UpdateWindows( );
 	}
-	
+
 	if( GetTime( ) > m_ListUpdateTimer && m_TabData[m_SelectedTab].type == T_LIST )
 	{
 		m_ListUpdateTimer = GetTime( ) + 10;

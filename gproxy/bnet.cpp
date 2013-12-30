@@ -773,6 +773,12 @@ void CBNET :: ProcessChatEvent( CIncomingChatEvent *chatEvent )
 		CONSOLE_ChangeChannel( Message );
 		CONSOLE_RemoveChannelUsers( );
 		CONSOLE_AddChannelUser( m_UserName, UserFlags );
+        vector<string> GList = m_GProxy->m_BNET->AllFriendLocs();
+        for(vector<string>::iterator i = GList.begin(); i != GList.end( ); i++ )
+        {
+            m_GProxy->m_BNET->SetSearchGameName( *i );
+            CONSOLE_Print( "[BNET] auto looking for friend's game \"" + *i + "\" for 2 mins" );
+        }
 	}
 	else if( Event == CBNETProtocol :: EID_CHANNELFULL )
 		CONSOLE_Print( "[BNET] channel is full", false  );
