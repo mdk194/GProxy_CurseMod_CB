@@ -3,6 +3,7 @@
 GProxy++ 1.0 CurseMod 1.15 mdk CustomBuild
 ==========================================
 
+auto search for friend's games after joined channel
 add /ff command: find all friend games
 add /ff <friend_name> command: find current game of your friend.
 fix bugs with ENT bot
