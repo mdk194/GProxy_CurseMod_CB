@@ -1,4 +1,3 @@
-
 ==========================================
 GProxy++ 1.0 CurseMod 1.15 mdk CustomBuild
 ==========================================
@@ -50,19 +49,19 @@ Your PVPGN server operator will provide you with the information you need to ent
 
 Full list of configuration keys:
 
-log                     the log file to log console output to
-war3path		the full path to your Warcraft III folder
-cdkeyroc		your Reign of Chaos CD key
-cdkeytft		your The Frozen Throne CD key
-server			the battle.net/PVPGN server to connect to
-username		your battle.net/PVPGN username
-password		your battle.net/PVPGN password
-channel			the first channel to join after logging into battle.net/PVPGN
-war3version		the Warcraft III version to connect to battle.net/PVPGN with
-port			the port GProxy++ should listen for the local player on
-exeversion		used with PVPGN servers
-exeversionhash		used with PVPGN servers
-passwordhashtype	used with PVPGN servers (set to "pvpgn" when connecting to a PVPGN server)
+log                 the log file to log console output to
+war3path		        the full path to your Warcraft III folder
+cdkeyroc		        your Reign of Chaos CD key
+cdkeytft		        your The Frozen Throne CD key
+server			        the battle.net/PVPGN server to connect to
+username		        your battle.net/PVPGN username
+password		        your battle.net/PVPGN password
+channel			        the first channel to join after logging into battle.net/PVPGN
+war3version		      the Warcraft III version to connect to battle.net/PVPGN with
+port			          the port GProxy++ should listen for the local player on
+exeversion		      used with PVPGN servers
+exeversionhash		  used with PVPGN servers
+passwordhashtype	  used with PVPGN servers (set to "pvpgn" when connecting to a PVPGN server)
 
 Note that GProxy++ is compatible with Warcraft III: Reign of Chaos.
 If you do not want to play The Frozen Throne just remove your TFT CD key from the config file or do not enter it when starting GProxy++ for the first time.
@@ -79,24 +78,25 @@ Commands
 
 In the GProxy++ console:
 
-/commands		show command list
-/exit or /quit		close GProxy++
+/commands		            show command list
+/exit or /quit		      close GProxy++
 /filter <f>             start filtering public game names for <f>
 /filteroff              stop filtering public game names
-/game <gamename>	look for a specific game named <gamename>
-/public			enable listing of public games (also: /publicon, /public on, /list, /liston, /list on)
-/publicoff		disable listing of public games (also: /public off, /listoff, /list off)
-/find_f <name>		find friend's current game
-/r <message>		reply to the last received whisper
-/start			start Warcraft III
-/version		show version text
+/game <gamename>	      look for a specific game named <gamename>
+/public			            enable listing of public games (also: /publicon, /public on, /list, /liston, /list on)
+/publicoff		          disable listing of public games (also: /public off, /listoff, /list off)
+/ff <name>		          find friend's current game
+/ff                     find all friend current games   
+/r <message>		        reply to the last received whisper
+/start		        	    start Warcraft III
+/version		            show version text
 
 In game:
 
-/re <message>		reply to the last received whisper
-/sc			whispers "spoofcheck" to the game host (also: /spoof, /spoofcheck, /spoof check)
-/status			show status information
-/w <user> <message>	whispers <message> to <user>
+/re <message>		        reply to the last received whisper
+/sc			                whispers "spoofcheck" to the game host (also: /spoof, /spoofcheck, /spoof check)
+/status			            show status information
+/w <user> <message>	    whispers <message> to <user>
 
 =================
 Technical Details
